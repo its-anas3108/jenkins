@@ -13,7 +13,6 @@ pipeline {
                 sh 'docker run python-app'
             }
         }
-
         stage('Run Application') {
             steps {
                 sh 'echo Application running'
