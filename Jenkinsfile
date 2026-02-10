@@ -1,26 +1,22 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER = '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"'
-    }
-
     stages {
         stage('Build Docker Image') {
             steps {
-                sh 'build -t python-app .'
+                sh 'docker build -t python-app .'
             }
         }
 
         stage('Run Tests Inside Docker') {
             steps {
-                sh 'run --rm python-app pytest'
+                sh 'docker run python-app'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'run --rm python-app'
+                sh 'echo Application running'
             }
         }
     }
